@@ -1,7 +1,7 @@
-package com.kodilla.newideas.controller.mapper;
+package com.kodilla.newideas.mapper;
 
-import com.kodilla.newideas.controller.domain.IdeaNotification;
-import com.kodilla.newideas.controller.domain.IdeaNotificationDto;
+import com.kodilla.newideas.domain.IdeaNotification;
+import com.kodilla.newideas.domain.IdeaNotificationDto;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

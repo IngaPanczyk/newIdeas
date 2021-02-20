@@ -1,8 +1,8 @@
-package com.kodilla.newideas.controller.mapper;
+package com.kodilla.newideas.mapper;
 
 
-import com.kodilla.newideas.controller.domain.IdeaExpert;
-import com.kodilla.newideas.controller.domain.IdeaExpertDto;
+import com.kodilla.newideas.domain.IdeaExpert;
+import com.kodilla.newideas.domain.IdeaExpertDto;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

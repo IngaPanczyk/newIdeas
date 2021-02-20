@@ -2,13 +2,13 @@ package com.kodilla.newideas.controller;
 
 
 
-import com.kodilla.newideas.controller.domain.IdeaExpertDto;
-import com.kodilla.newideas.controller.domain.IdeaNotificationDto;
-import com.kodilla.newideas.controller.exception.ExpertNotFoundException;
-import com.kodilla.newideas.controller.exception.IdeaNotFoundException;
-import com.kodilla.newideas.controller.mapper.IdeaExpertMapper;
-import com.kodilla.newideas.controller.mapper.IdeaMapper;
-import com.kodilla.newideas.controller.service.DbService;
+import com.kodilla.newideas.domain.IdeaExpertDto;
+import com.kodilla.newideas.domain.IdeaNotificationDto;
+import com.kodilla.newideas.exception.ExpertNotFoundException;
+import com.kodilla.newideas.exception.IdeaNotFoundException;
+import com.kodilla.newideas.mapper.IdeaExpertMapper;
+import com.kodilla.newideas.mapper.IdeaMapper;
+import com.kodilla.newideas.service.DbService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;

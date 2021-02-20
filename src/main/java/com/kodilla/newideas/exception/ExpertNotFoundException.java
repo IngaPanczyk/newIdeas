@@ -1,4 +1,4 @@
-package com.kodilla.newideas.controller.exception;
+package com.kodilla.newideas.exception;
 
 public class ExpertNotFoundException extends Exception{
 

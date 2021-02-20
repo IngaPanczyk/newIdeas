@@ -1,8 +1,8 @@
-package com.kodilla.newideas.controller.repository;
+package com.kodilla.newideas.repository;
 
 
 
-import com.kodilla.newideas.controller.domain.IdeaExpert;
+import com.kodilla.newideas.domain.IdeaExpert;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

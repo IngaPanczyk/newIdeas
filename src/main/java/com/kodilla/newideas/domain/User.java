@@ -1,4 +1,4 @@
-package com.kodilla.newideas.controller.domain;
+package com.kodilla.newideas.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;

@@ -1,11 +1,11 @@
-package com.kodilla.newideas.controller.service;
+package com.kodilla.newideas.service;
 
 
 
-import com.kodilla.newideas.controller.domain.IdeaExpert;
-import com.kodilla.newideas.controller.domain.IdeaNotification;
-import com.kodilla.newideas.controller.repository.IdeaExpertDao;
-import com.kodilla.newideas.controller.repository.IdeaNotificationDao;
+import com.kodilla.newideas.domain.IdeaExpert;
+import com.kodilla.newideas.domain.IdeaNotification;
+import com.kodilla.newideas.repository.IdeaExpertDao;
+import com.kodilla.newideas.repository.IdeaNotificationDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

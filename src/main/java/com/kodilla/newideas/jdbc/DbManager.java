@@ -1,4 +1,4 @@
-package com.kodilla.newideas.controller.jdbc;
+package com.kodilla.newideas.jdbc;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

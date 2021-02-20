@@ -1,7 +1,7 @@
-package com.kodilla.newideas.controller.repository;
+package com.kodilla.newideas.repository;
 
 
-import com.kodilla.newideas.controller.domain.IdeaNotification;
+import com.kodilla.newideas.domain.IdeaNotification;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
