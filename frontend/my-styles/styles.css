@@ -1,0 +1,14 @@
+.main-view {
+    color: red;
+}
+body{
+    color: black;
+}
+
+vaadin-grid-sorter{
+    color: green;
+}
+
+tbody {
+    background: green;
+}

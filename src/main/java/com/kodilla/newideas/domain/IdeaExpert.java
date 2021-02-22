@@ -27,7 +27,7 @@ public final class IdeaExpert {
     @OneToMany(targetEntity = IdeaNotification.class,
             mappedBy = "ideaExpert",
             cascade = CascadeType.MERGE,
-            fetch = FetchType.LAZY
+            fetch = FetchType.EAGER
     )
     public List<IdeaNotification> ideaNotificationList = new ArrayList<>();
 

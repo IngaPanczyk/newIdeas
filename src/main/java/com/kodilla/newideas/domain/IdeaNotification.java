@@ -1,5 +1,6 @@
 package com.kodilla.newideas.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -25,14 +26,17 @@ public class IdeaNotification {
     @Column
     private LocalDate reportingDate;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "status_id")
     private IdeaStatus status;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "expert_id")
     private IdeaExpert ideaExpert;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
