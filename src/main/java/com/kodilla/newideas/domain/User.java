@@ -31,4 +31,9 @@ public class User {
             fetch = FetchType.LAZY
     )
     public List<IdeaNotification> ideaNotificationList = new ArrayList<>();
+
+    @Override
+    public String toString() {
+        return username;
+    }
 }

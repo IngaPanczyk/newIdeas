@@ -35,4 +35,9 @@ public final class IdeaExpert {
         this.expertName = expertName;
         this.ideaNotificationList = ideaNotificationList;
     }
+
+    @Override
+    public String toString() {
+        return expertName;
+    }
 }
