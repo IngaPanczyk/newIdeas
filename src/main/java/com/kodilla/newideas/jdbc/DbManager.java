@@ -8,7 +8,7 @@ import java.util.Properties;
 public class DbManager {
     private Connection conn;
     private static DbManager dbManagerInstance;
-
+/*
     private DbManager() throws SQLException {
         Properties connectionProps = new Properties();
         connectionProps.put("user", "kodilla_user");
@@ -28,5 +28,5 @@ public class DbManager {
 
     public Connection getConnection() {
         return conn;
-    }
+    }*/
 }

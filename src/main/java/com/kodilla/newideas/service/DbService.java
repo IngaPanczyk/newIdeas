@@ -71,6 +71,14 @@ public class DbService {
         return ideaNotificationDao.findAll().stream().filter(idea->idea.getId().equals(id)).collect(Collectors.toList());
     }
 
+    public String countIdeas() {
+        long counter = ideaNotificationDao.findAll().stream().count();
+        String count = String.valueOf(counter);
+        return count;
+    }
+
+
+
 
 
 }

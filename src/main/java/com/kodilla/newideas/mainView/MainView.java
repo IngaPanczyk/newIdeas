@@ -31,15 +31,12 @@ public class MainView extends VerticalLayout {
     @Autowired
     IdeaController ideaController;
 
-    @Autowired
-    private JdbcTemplate jdbcTemplate;
-
     private Grid grid = new Grid<>(IdeaNotification.class);
 
     public MainView(DbService dbService) {
 
-        add(new Button("Click me", e -> Notification.show("Hello Word")));
         add(new Label("KAIZEN Employee suggestion system"));
+        add((new com.vaadin.flow.component.Component[]{new Label("Numbner of idea notifications: " + dbService.countIdeas())}));
 
         //Show all ideas
         grid.setItems(dbService.getAllIdeas());
