@@ -1,7 +1,6 @@
 package com.kodilla.newideas.mainView;
 
 import com.kodilla.newideas.controller.IdeaController;
-import com.kodilla.newideas.domain.IdeaExpert;
 import com.kodilla.newideas.domain.IdeaNotification;
 import com.kodilla.newideas.service.DbService;
 import com.vaadin.flow.component.button.Button;
@@ -11,21 +10,29 @@ import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.component.textfield.NumberField;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.value.ValueChangeMode;
 import com.vaadin.flow.router.Route;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+
+import java.util.concurrent.atomic.AtomicLongFieldUpdater;
 
 @CssImport("./my-styles/styles.css")
 @Route
 public class MainView extends VerticalLayout {
 
-    private TextField filter = new TextField();
+
+    private TextField filterByDescription = new TextField();
+    private NumberField  filterById = new NumberField();
     private IdeaForm form = new IdeaForm();
 
     @Autowired
     IdeaController ideaController;
 
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
 
     private Grid grid = new Grid<>(IdeaNotification.class);
 
@@ -42,13 +49,18 @@ public class MainView extends VerticalLayout {
         mainContent.setSizeFull();
         grid.setSizeFull();
 
-        //Filter
-        filter.setPlaceholder("Filter by idea id");
-        filter.setClearButtonVisible(true);
-        filter.setValueChangeMode(ValueChangeMode.EAGER);
-        filter.addValueChangeListener(e -> grid.setItems(dbService.getIdea(Long.valueOf(filter.getValue()))));
+        //Filters
+        filterByDescription.setPlaceholder("Filter by subject");
+        filterByDescription.setClearButtonVisible(true);
+        filterByDescription.setValueChangeMode(ValueChangeMode.EAGER);
+        filterByDescription.addValueChangeListener(e -> grid.setItems(dbService.filterIdeasByDescription(filterByDescription.getValue())));
 
-        add(filter,grid,form);
+        filterById.setPlaceholder("Filter by id");
+        filterById.setClearButtonVisible(true);
+        filterById.setValueChangeMode(ValueChangeMode.EAGER);
+        filterById.addValueChangeListener(e -> grid.setItems(dbService.filterIdeasById(filterById.getValue().longValue())));
+
+        add(filterByDescription, filterById, mainContent);
         setSizeFull();
 
         grid.asSingleSelect().addValueChangeListener(event -> form.setForm((IdeaNotification) grid.asSingleSelect().getValue()));

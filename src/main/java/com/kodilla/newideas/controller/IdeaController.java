@@ -64,6 +64,11 @@ public class IdeaController {
         return ideaMapper.mapToIdeaDtoList(service.getAllIdeas());
     }
 
+    @RequestMapping(method = RequestMethod.GET, value = "getIdeasByDescription")
+    public List<IdeaNotificationDto> getIdeasByDescription(@RequestParam String description)  {
+        return ideaMapper.mapToIdeaDtoList(service.filterIdeasByDescription(description));
+    }
+
     @RequestMapping(method = RequestMethod.GET, value = "getIdea")
     public IdeaNotificationDto getIdea(@RequestParam Long id) throws IdeaNotFoundException {
         return ideaMapper.mapToIdeaDto(service.getIdea(id).orElseThrow(IdeaNotFoundException::new));

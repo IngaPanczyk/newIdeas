@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 
 @Service
@@ -60,6 +61,14 @@ public class DbService {
 
     public void deleteIdeaById(final Long id){
         ideaNotificationDao.deleteById(id);
+    }
+
+    public List<IdeaNotification> filterIdeasByDescription(String description) {
+        return ideaNotificationDao.findAll().stream().filter(idea->idea.getDescription().contains(description)).collect(Collectors.toList());
+    }
+
+    public List<IdeaNotification> filterIdeasById(Long id) {
+        return ideaNotificationDao.findAll().stream().filter(idea->idea.getId().equals(id)).collect(Collectors.toList());
     }
 
 
