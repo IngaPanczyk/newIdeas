@@ -15,8 +15,8 @@ public class IdeaNotificationDto {
     private String subject;
     private String description;
     private LocalDate reportingDate;
-    private IdeaStatus status;
-    private IdeaExpert ideaExpert;
+    private IdeaStatus status; //tylko ID i powinno być Dto
+    private IdeaExpert ideaExpert; // tylko ID
     private User user;
 
 }
