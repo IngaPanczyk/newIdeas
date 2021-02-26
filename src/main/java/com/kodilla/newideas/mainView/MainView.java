@@ -3,14 +3,12 @@ package com.kodilla.newideas.mainView;
 import com.kodilla.newideas.controller.IdeaController;
 import com.kodilla.newideas.domain.IdeaExpert;
 import com.kodilla.newideas.domain.IdeaNotification;
-import com.kodilla.newideas.domain.IdeaStatus;
 import com.kodilla.newideas.service.DbService;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.html.Label;
-import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.NumberField;
@@ -30,13 +28,14 @@ public class MainView extends VerticalLayout {
     @Autowired
     IdeaController ideaController;
 
-    private final DbService dbService;
+    DbService dbService;
 
     private TextField filterByDescription = new TextField();
-    private NumberField  filterById = new NumberField();
+    private NumberField filterById = new NumberField();
     private IdeaForm form = new IdeaForm(this);
     private Button addNewIdea = new Button("Add new idea");
     private Grid grid = new Grid<>(IdeaNotification.class);
+    private ComboBox<IdeaExpert> expertComboBox = new ComboBox<>("Expert");
 
     public MainView(DbService service) {
 
@@ -46,6 +45,9 @@ public class MainView extends VerticalLayout {
 
         //Show all ideas
         grid.setItems(dbService.getAllIdeas());
+
+        expertComboBox.setItems(dbService.getAllExperts());
+
         grid.setColumns("id", "description", "subject", "reportingDate", "status", "ideaExpert", "user");
 
 
@@ -65,7 +67,7 @@ public class MainView extends VerticalLayout {
             form.setForm(new IdeaNotification());
         });
 
-        HorizontalLayout toolbar = new HorizontalLayout(filterByDescription, filterById, addNewIdea);
+        HorizontalLayout toolbar = new HorizontalLayout(filterByDescription, filterById, addNewIdea, expertComboBox);
 
         HorizontalLayout mainContent = new HorizontalLayout(grid, form);
         mainContent.setSizeFull();
@@ -88,15 +90,22 @@ public class MainView extends VerticalLayout {
         grid.setItems(dbService.getAllIdeas());
     }
 
-    public List<IdeaExpert> getExperts(){
+    public List<IdeaExpert> getExperts() {
+
         try {
+            List<IdeaExpert> experts1 = dbService.getAllExperts();
+            System.out.println("Moi experci to: " + experts1);
             return dbService.getAllExperts();
-        }catch (Exception e) {
+        } catch (Exception e) {
             List<IdeaExpert> experts = new ArrayList<>();
-            experts.add(new IdeaExpert("Joanna Nowak",null));
-            experts.add(new IdeaExpert("Joanna Kowalska",null));
-            experts.add(new IdeaExpert("Joanna Zupa",null));
+            experts.add(new IdeaExpert("Joanna Nowak", null));
+            experts.add(new IdeaExpert("Joanna Kowalska", null));
+            experts.add(new IdeaExpert("Joanna Zupa", null));
             return experts;
         }
     }
+    public void setItems(){
+        expertComboBox.setItems(dbService.getAllExperts());
+    }
+
 }

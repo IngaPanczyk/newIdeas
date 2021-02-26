@@ -5,7 +5,6 @@ import com.kodilla.newideas.domain.IdeaExpert;
 import com.kodilla.newideas.domain.IdeaNotification;
 import com.kodilla.newideas.domain.IdeaStatus;
 import com.kodilla.newideas.domain.User;
-import com.kodilla.newideas.service.DbService;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.combobox.ComboBox;
@@ -17,15 +16,11 @@ import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.data.binder.PropertyId;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.stream.Collectors;
 
 public class IdeaForm extends FormLayout {
 
     @Autowired
     IdeaController ideaController;
-
-    @Autowired
-    DbService dbService;
 
     MainView mainView;
 
@@ -49,10 +44,11 @@ public class IdeaForm extends FormLayout {
     private Button delete = new Button("Delete");
 
     public IdeaForm(MainView mainView) {
+
         this.mainView = mainView;
 
-        //ideaExpert.setItems(mainView.getDbService().getAllExperts().stream().map(e->e.getExpertName()).collect(Collectors.toSet()));
-        ideaExpert.setItems(mainView.getExperts());
+       // ideaExpert.setItems(mainView.getDbService().getAllExperts());
+
         HorizontalLayout buttons = new HorizontalLayout(save, delete);
         save.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
         add(subject, description, reportingDate, status, ideaExpert, user, buttons);

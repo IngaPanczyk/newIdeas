@@ -8,12 +8,13 @@ import com.kodilla.newideas.repository.IdeaExpertDao;
 import com.kodilla.newideas.repository.IdeaNotificationDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-
+@Transactional
 @Service
 public class DbService {
     @Autowired
@@ -76,9 +77,4 @@ public class DbService {
         String count = String.valueOf(counter);
         return count;
     }
-
-
-
-
-
 }
