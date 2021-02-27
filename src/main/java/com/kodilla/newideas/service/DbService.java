@@ -4,10 +4,13 @@ package com.kodilla.newideas.service;
 
 import com.kodilla.newideas.domain.IdeaExpert;
 import com.kodilla.newideas.domain.IdeaNotification;
+import com.kodilla.newideas.domain.IdeaStatus;
 import com.kodilla.newideas.domain.User;
 import com.kodilla.newideas.repository.IdeaExpertDao;
 import com.kodilla.newideas.repository.IdeaNotificationDao;
+import com.kodilla.newideas.repository.StatusDao;
 import com.kodilla.newideas.repository.UserDao;
+import jdk.net.SocketFlow;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,21 +24,24 @@ import java.util.stream.Collectors;
 @Transactional
 @Service
 public class DbService {
+
     @Autowired
     private IdeaExpertDao ideaExpertDao;
     @Autowired
     private IdeaNotificationDao ideaNotificationDao;
     @Autowired
     private UserDao userDao;
+    @Autowired
+    private StatusDao statusDao;
 
-    private static DbService dbService;
+   // private static DbService dbService;
 
-    public static DbService getInstance(){
+/*    public static DbService getInstance(){
         if(dbService==null){
             dbService=new DbService();
         }
         return dbService;
-    }
+    }*/
 
     //Experts
     public List<IdeaExpert> getAllExperts() {
@@ -89,14 +95,20 @@ public class DbService {
         return userDao.save(user);
     }
 
+    public List<User> getAllUsers() {
+        return userDao.findAll();
+    }
+
+    public List<IdeaStatus> getAllStatuses(){
+        return statusDao.findAll();
+    }
+
 
 /*    public User saveUser(final User user) {
         return userDao.save(user);
     }
 
-    public List<User> getAllUsers() {
-        return userDao.findAll();
-    }
+
 
     public Optional<User> getUser(final Long id) {
         return userDao.findById(id);

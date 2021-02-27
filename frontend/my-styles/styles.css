@@ -10,14 +10,14 @@ vaadin-vertical-layout{
 }
 
 vaadin-grid-sorter{
-    color: green;
+    color: black;
 }
 
 tbody {
-    background: green;
+    background: gold;
 }
 label:nth-child(1){
-    color: green;
+    color: gold;
     font-size: 60px;
     background: aliceblue;
 }

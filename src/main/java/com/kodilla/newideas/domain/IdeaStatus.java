@@ -10,11 +10,11 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity(name = "STATUSES")
-@Component
 public class IdeaStatus {
     @Id
     @Column(name = "status_id")

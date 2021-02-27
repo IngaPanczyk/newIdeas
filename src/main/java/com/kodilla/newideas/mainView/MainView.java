@@ -4,6 +4,7 @@ import com.kodilla.newideas.controller.IdeaController;
 import com.kodilla.newideas.domain.IdeaExpert;
 import com.kodilla.newideas.domain.IdeaNotification;
 import com.kodilla.newideas.domain.User;
+import com.kodilla.newideas.mainView.graf.StatusGraf;
 import com.kodilla.newideas.service.DbService;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.combobox.ComboBox;
@@ -11,6 +12,8 @@ import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.html.Label;
+import com.vaadin.flow.component.icon.Icon;
+import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.NumberField;
@@ -27,16 +30,14 @@ import java.util.List;
 @Route
 public class MainView extends VerticalLayout {
 
-    @Autowired
-    IdeaController ideaController;
-
     DbService dbService;
     IdeaForm ideaForm;
+
+    StatusGraf statusGraf = new StatusGraf();
 
     private TextField filterByDescription = new TextField();
     private NumberField filterById = new NumberField();
 
-   // private IdeaForm form = new IdeaForm(this);
     private ExpertForm expertForm = new ExpertForm(this);
     private UserForm userForm = new UserForm(this);
 
@@ -44,9 +45,13 @@ public class MainView extends VerticalLayout {
     private Button addNewExpert = new Button("Add new expert");
     private Button addNewUser = new Button("Add new user");
 
+    //Image image = new Image(statusGraf.createGraf(dbService),"Graf");
+
+    Icon lightbulb = VaadinIcon.LIGHTBULB.create();
+
+
+
     private Grid grid = new Grid<>(IdeaNotification.class);
-    private ComboBox<IdeaExpert> expertComboBox = new ComboBox<>("Expert");
-    //Image image = new Image("https://snipboard.io/Qi2Ud7.jpg", "Logo");
 
     public MainView(DbService service, IdeaForm form) {
 
@@ -59,9 +64,11 @@ public class MainView extends VerticalLayout {
         //Show all ideas
         grid.setItems(dbService.getAllIdeas());
 
-        expertComboBox.setItems(dbService.getAllExperts());
 
         grid.setColumns("id", "description", "subject", "reportingDate", "status", "ideaExpert", "user");
+
+        lightbulb.setSize("100px");
+        lightbulb.setColor("gold");
 
         //Filters
         filterByDescription.setPlaceholder("Filter by subject");
@@ -89,7 +96,7 @@ public class MainView extends VerticalLayout {
             userForm.setFormUser(new User());
         });
 
-        HorizontalLayout toolbar = new HorizontalLayout(filterByDescription, filterById, addNewIdea, addNewExpert, addNewUser, expertComboBox);
+        HorizontalLayout toolbar = new HorizontalLayout(lightbulb,filterByDescription, filterById, addNewIdea, addNewExpert, addNewUser,new Image(statusGraf.createGraf(dbService),"Graf"));
 
         HorizontalLayout mainContent = new HorizontalLayout(grid, form, expertForm,userForm);
         mainContent.setSizeFull();

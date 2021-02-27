@@ -11,6 +11,7 @@ import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.datepicker.DatePicker;
 import com.vaadin.flow.component.formlayout.FormLayout;
+import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.Binder;
@@ -24,12 +25,7 @@ import org.springframework.stereotype.Component;
 @UIScope
 public class IdeaForm extends FormLayout {
 
-    @Autowired
-    IdeaController ideaController;
-
-    //MainView mainView;
     DbService dbService;
-
 
     private Binder<IdeaNotification> binder = new Binder<>(IdeaNotification.class);
 
@@ -51,9 +47,13 @@ public class IdeaForm extends FormLayout {
 
     public IdeaForm(DbService dbService) {
 
+        add((new com.vaadin.flow.component.Component[]{new Label("Notification form" )}));
+
         this.dbService = dbService;
 
        ideaExpert.setItems(dbService.getAllExperts());
+       user.setItems(dbService.getAllUsers());
+       status.setItems(dbService.getAllStatuses());
 
         HorizontalLayout buttons = new HorizontalLayout(save, delete);
         save.addThemeVariants(ButtonVariant.LUMO_PRIMARY);

@@ -12,7 +12,7 @@ import java.util.Optional;
 
 //@Repository
 public interface UserDao extends CrudRepository<User, Long> {
-/*    @Override
+ @Override
     User save(User user);
 
     @Override
@@ -23,5 +23,4 @@ public interface UserDao extends CrudRepository<User, Long> {
 
     @Override
     long count();
-}*/
 }
