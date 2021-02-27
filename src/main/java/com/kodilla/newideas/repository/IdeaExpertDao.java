@@ -23,7 +23,6 @@ public interface IdeaExpertDao extends CrudRepository<IdeaExpert, Long> {
     @Override
     IdeaExpert save(IdeaExpert ideaExpert);
 
-
     Optional<IdeaExpert> deleteByExpertName(String expertName);
 
     Optional<IdeaExpert>findIdeaExpertByExpertName(String expertName);

@@ -1,15 +1,18 @@
 package com.kodilla.newideas.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.kodilla.newideas.mainView.MainView;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -35,6 +38,7 @@ public final class IdeaExpert {
         this.expertName = expertName;
         this.ideaNotificationList = ideaNotificationList;
     }
+
 
     @Override
     public String toString() {

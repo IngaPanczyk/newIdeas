@@ -26,3 +26,9 @@ label:nth-child(2){
     color: black;
     font-size: 30px;
 }
+
+image{
+    position:absolute; left: 12px;
+
+;
+}

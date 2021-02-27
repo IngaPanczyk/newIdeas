@@ -5,6 +5,7 @@ import com.kodilla.newideas.domain.IdeaExpert;
 import com.kodilla.newideas.domain.IdeaNotification;
 import com.kodilla.newideas.domain.IdeaStatus;
 import com.kodilla.newideas.domain.User;
+import com.kodilla.newideas.service.DbService;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.combobox.ComboBox;
@@ -14,21 +15,26 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.data.binder.PropertyId;
+import com.vaadin.flow.spring.annotation.SpringComponent;
+import com.vaadin.flow.spring.annotation.UIScope;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
-
+@SpringComponent
+@UIScope
 public class IdeaForm extends FormLayout {
 
     @Autowired
     IdeaController ideaController;
 
-    MainView mainView;
+    //MainView mainView;
+    DbService dbService;
+
 
     private Binder<IdeaNotification> binder = new Binder<>(IdeaNotification.class);
 
     @PropertyId("subject")
     private TextField subject = new TextField("Subject");
-
     @PropertyId("description")
     private TextField description = new TextField("Description");
     @PropertyId("reportingDate")
@@ -43,11 +49,11 @@ public class IdeaForm extends FormLayout {
     private Button save = new Button("Save");
     private Button delete = new Button("Delete");
 
-    public IdeaForm(MainView mainView) {
+    public IdeaForm(DbService dbService) {
 
-        this.mainView = mainView;
+        this.dbService = dbService;
 
-       // ideaExpert.setItems(mainView.getDbService().getAllExperts());
+       ideaExpert.setItems(dbService.getAllExperts());
 
         HorizontalLayout buttons = new HorizontalLayout(save, delete);
         save.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
@@ -83,15 +89,17 @@ public class IdeaForm extends FormLayout {
 
     private void save() {
         IdeaNotification idea = binder.getBean();
-        mainView.getDbService().saveIdea(idea);
-        mainView.refresh();
+        //mainView.getDbService().saveIdea(idea);
+        dbService.saveIdea(idea);
+        //mainView.refresh();
         setForm(null);
     }
 
     private void delete() {
         IdeaNotification idea = binder.getBean();
-        mainView.getDbService().deleteIdeaById(idea.getId());
-        mainView.refresh();
+        //mainView.getDbService().deleteIdeaById(idea.getId());
+        dbService.deleteIdeaById(idea.getId());
+        //mainView.refresh();
         setForm(null);
     }
 }

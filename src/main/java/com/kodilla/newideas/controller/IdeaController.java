@@ -4,10 +4,13 @@ package com.kodilla.newideas.controller;
 
 import com.kodilla.newideas.domain.IdeaExpertDto;
 import com.kodilla.newideas.domain.IdeaNotificationDto;
+import com.kodilla.newideas.domain.User;
+import com.kodilla.newideas.domain.UserDto;
 import com.kodilla.newideas.exception.ExpertNotFoundException;
 import com.kodilla.newideas.exception.IdeaNotFoundException;
 import com.kodilla.newideas.mapper.IdeaExpertMapper;
 import com.kodilla.newideas.mapper.IdeaMapper;
+import com.kodilla.newideas.mapper.UserMapper;
 import com.kodilla.newideas.service.DbService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -25,6 +28,8 @@ public class IdeaController {
     private IdeaExpertMapper ideaExpertMapper;
     @Autowired
     private IdeaMapper ideaMapper;
+    @Autowired
+    private UserMapper userMapper;
 
 
     @RequestMapping(method = RequestMethod.GET, value = "getExperts")
@@ -45,17 +50,6 @@ public class IdeaController {
     @RequestMapping(method = RequestMethod.DELETE, value = "deleteExpertById")
     public void deleteExpertById(@RequestParam Long id) {
         service.deleteExpertById(id);
-    }
-
-    //Nie działa
-    @RequestMapping(method = RequestMethod.GET, value = "getExpertByName")
-    public IdeaExpertDto getExpertByName(@RequestParam String name) throws IdeaNotFoundException {
-        return ideaExpertMapper.mapToIdeaExpertDto(service.getExpertByName(name).orElseThrow(IdeaNotFoundException::new));
-    }
-    //Nie działa
-    @RequestMapping(method = RequestMethod.DELETE, value = "deleteExpertByName")
-    public void deleteExpertByName(@RequestParam String name) {
-        service.deleteExpertByName(name);
     }
 
 
@@ -88,5 +82,27 @@ public class IdeaController {
     public void deleteIdeaById(@RequestParam Long id) {
         service.deleteIdeaById(id);
     }
+
+/*    @RequestMapping(method = RequestMethod.GET, value = "getUsers")
+    public List<UserDto> getUsers() {
+        return userMapper.mapToUserDtoList(service.getAllUsers());
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "getUser")
+    public UserDto getUser(@RequestParam Long id) throws ExpertNotFoundException {
+        return userMapper.mapToUserDto(service.getUser(id).orElseThrow(ExpertNotFoundException::new));
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value = "createUser", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void createUser(@RequestBody UserDto userDto) {
+        service.saveUser(userMapper.mapToUser(userDto));
+    }
+
+    @RequestMapping(method = RequestMethod.DELETE, value = "deleteUserById")
+    public void deleteUserById(@RequestParam Long id) {
+        service.deleteUserById(id);
+    }*/
+
+
 
 }
