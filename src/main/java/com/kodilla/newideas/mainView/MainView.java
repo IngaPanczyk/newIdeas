@@ -16,6 +16,7 @@ import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.component.page.Page;
 import com.vaadin.flow.component.textfield.NumberField;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.value.ValueChangeMode;
@@ -32,8 +33,10 @@ public class MainView extends VerticalLayout {
 
     DbService dbService;
     IdeaForm ideaForm;
+    Image image;
 
     StatusGraf statusGraf = new StatusGraf();
+
 
     private TextField filterByDescription = new TextField();
     private NumberField filterById = new NumberField();
@@ -41,15 +44,13 @@ public class MainView extends VerticalLayout {
     private ExpertForm expertForm = new ExpertForm(this);
     private UserForm userForm = new UserForm(this);
 
-    private Button addNewIdea = new Button("Add new idea");
-    private Button addNewExpert = new Button("Add new expert");
-    private Button addNewUser = new Button("Add new user");
-
-    //Image image = new Image(statusGraf.createGraf(dbService),"Graf");
-
-    Icon lightbulb = VaadinIcon.LIGHTBULB.create();
-
-
+    private Button addNewIdea = new Button("Add new idea",
+           new Icon(VaadinIcon.LIGHTBULB));
+    private Button addNewExpert = new Button("Add new expert",
+            new Icon((VaadinIcon.SPECIALIST)));
+    private Button addNewUser = new Button("Add new user",
+            new Icon(VaadinIcon.USER));
+    private Button updateGraf = new Button("Update graf");
 
     private Grid grid = new Grid<>(IdeaNotification.class);
 
@@ -61,14 +62,13 @@ public class MainView extends VerticalLayout {
         add(new Label("KAIZEN Employee suggestion system"));
         add((new com.vaadin.flow.component.Component[]{new Label("Number of idea notifications: " + dbService.countIdeas())}));
 
+        Image image = new Image(statusGraf.createGraf(dbService),"Graf");
+
         //Show all ideas
         grid.setItems(dbService.getAllIdeas());
 
 
         grid.setColumns("id", "description", "subject", "reportingDate", "status", "ideaExpert", "user");
-
-        lightbulb.setSize("100px");
-        lightbulb.setColor("gold");
 
         //Filters
         filterByDescription.setPlaceholder("Filter by subject");
@@ -96,13 +96,20 @@ public class MainView extends VerticalLayout {
             userForm.setFormUser(new User());
         });
 
-        HorizontalLayout toolbar = new HorizontalLayout(lightbulb,filterByDescription, filterById, addNewIdea, addNewExpert, addNewUser,new Image(statusGraf.createGraf(dbService),"Graf"));
+        HorizontalLayout toolbar = new HorizontalLayout(filterByDescription, filterById, addNewIdea, addNewExpert, addNewUser, updateGraf);
+
+        VerticalLayout graf = new VerticalLayout( new Image(statusGraf.createGraf(dbService),"Graf"));
+
+        updateGraf.addClickListener(e -> {
+        graf.removeAll();
+        graf.add(new Image(statusGraf.createGraf(dbService),"Graf"));
+        });
 
         HorizontalLayout mainContent = new HorizontalLayout(grid, form, expertForm,userForm);
         mainContent.setSizeFull();
         grid.setSizeFull();
 
-        add(toolbar, mainContent);
+        add(toolbar, mainContent,graf);
         form.setForm(null);
         expertForm.setFormExpert(null);
         userForm.setFormUser(null);
@@ -121,25 +128,5 @@ public class MainView extends VerticalLayout {
         grid.setItems(dbService.getAllIdeas());
     }
 
-    public List<IdeaExpert> getExperts() {
-
-        try {
-            List<IdeaExpert> experts1 = dbService.getAllExperts();
-            System.out.println("Moi experci to: " + experts1);
-            return dbService.getAllExperts();
-        } catch (Exception e) {
-            List<IdeaExpert> experts = new ArrayList<>();
-            experts.add(new IdeaExpert("Joanna Nowak", null));
-            experts.add(new IdeaExpert("Joanna Kowalska", null));
-            experts.add(new IdeaExpert("Joanna Zupa", null));
-            return experts;
-        }
-    }
-
-    public List<IdeaExpert> getExpertsForCombo() {
-        List<IdeaExpert> list = dbService.getAllExperts();
-
-        return list;
-    }
 
 }

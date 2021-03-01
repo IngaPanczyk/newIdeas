@@ -4,7 +4,7 @@ import com.kodilla.newideas.controller.IdeaController;
 import com.kodilla.newideas.service.DbService;
 import io.quickchart.QuickChart;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+
 
 public class StatusGraf {
 
@@ -15,21 +15,32 @@ public class StatusGraf {
     IdeaController ideaController;
 
 
-    //long reported = dbService.getAllStatuses().stream().filter(r->r.getNotificationStatus().contains("reported")).count();
-    //long reported = ideaController.getIdeas().stream().filter(r->r.getStatus().getNotificationStatus().contains("reported")).count();
-
-    //long reported = 3L;
-    //String repo = String.valueOf(reported);
-
-
     public String createGraf(DbService dbService) {
 
-        String reported = String.valueOf(dbService.getAllStatuses().stream()
-                .filter(r -> r.getNotificationStatus().contains("reported")).count()
+        String reported = String.valueOf(dbService.getAllIdeas().stream()
+                .map(r -> r.getStatus())
+                .map(t -> t.getNotificationStatus())
+                .filter(r -> r.contains("reported")).count()
         );
-        String inProgres = String.valueOf(dbService.getAllStatuses().stream()
-                .filter(r -> r.getNotificationStatus().contains("in progres")).count()
+
+        String implemented = String.valueOf(dbService.getAllIdeas().stream()
+                .map(r -> r.getStatus())
+                .map(t -> t.getNotificationStatus())
+                .filter(r -> r.contains("implemented")).count()
         );
+
+        String inProgress = String.valueOf(dbService.getAllIdeas().stream()
+                .map(r -> r.getStatus())
+                .map(t -> t.getNotificationStatus())
+                .filter(r -> r.contains("in progress")).count()
+        );
+
+        String canceled = String.valueOf(dbService.getAllIdeas().stream()
+                .map(r -> r.getStatus())
+                .map(t -> t.getNotificationStatus())
+                .filter(r -> r.contains("canceled")).count()
+        );
+
 
         QuickChart chart = new QuickChart();
         chart.setWidth(500);
@@ -40,7 +51,7 @@ public class StatusGraf {
                 + "        labels: ['reported', 'in progres', 'implemented', 'canceled'],"
                 + "        datasets: [{"
                 + "            label: 'Statuses',"
-                + "            data: [" + reported + "," + inProgres + ", 70, 180]"
+                + "            data: [" + reported + "," + inProgress + ","+ implemented+"," + canceled+"]"
                 + "        }]"
                 + "    }"
                 + "}"

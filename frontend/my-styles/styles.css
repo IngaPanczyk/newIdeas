@@ -14,10 +14,10 @@ vaadin-grid-sorter{
 }
 
 tbody {
-    background: gold;
+    background: black;
 }
 label:nth-child(1){
-    color: gold;
+    color: black;
     font-size: 60px;
     background: aliceblue;
 }
