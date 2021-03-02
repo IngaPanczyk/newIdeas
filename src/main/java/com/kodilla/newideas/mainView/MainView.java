@@ -1,5 +1,7 @@
 package com.kodilla.newideas.mainView;
 
+import com.kodilla.newideas.client.EurDto;
+import com.kodilla.newideas.client.NbpClient;
 import com.kodilla.newideas.controller.IdeaController;
 import com.kodilla.newideas.domain.IdeaExpert;
 import com.kodilla.newideas.domain.IdeaNotification;
@@ -16,15 +18,12 @@ import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
-import com.vaadin.flow.component.page.Page;
 import com.vaadin.flow.component.textfield.NumberField;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.value.ValueChangeMode;
 import com.vaadin.flow.router.Route;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import java.util.ArrayList;
-import java.util.List;
+import org.springframework.web.client.RestTemplate;
 
 
 @CssImport("./my-styles/styles.css")
@@ -33,10 +32,9 @@ public class MainView extends VerticalLayout {
 
     DbService dbService;
     IdeaForm ideaForm;
-    Image image;
+    NbpClient nbpClient;
 
     StatusGraf statusGraf = new StatusGraf();
-
 
     private TextField filterByDescription = new TextField();
     private NumberField filterById = new NumberField();
@@ -50,17 +48,19 @@ public class MainView extends VerticalLayout {
             new Icon((VaadinIcon.SPECIALIST)));
     private Button addNewUser = new Button("Add new user",
             new Icon(VaadinIcon.USER));
-    private Button updateGraf = new Button("Update graf");
+    private Button updateGraf = new Button("Update graf",
+            new Icon(VaadinIcon.REFRESH));
 
     private Grid grid = new Grid<>(IdeaNotification.class);
 
-    public MainView(DbService service, IdeaForm form) {
+    public MainView(DbService service, IdeaForm form, NbpClient nbpClient) {
 
         this.dbService = service;
         this.ideaForm = form;
 
         add(new Label("KAIZEN Employee suggestion system"));
         add((new com.vaadin.flow.component.Component[]{new Label("Number of idea notifications: " + dbService.countIdeas())}));
+        add((new com.vaadin.flow.component.Component[]{new Label(nbpClient.getEur())}));
 
         Image image = new Image(statusGraf.createGraf(dbService),"Graf");
 
