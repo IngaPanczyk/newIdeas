@@ -15,6 +15,5 @@ public class RatesDto {
     String no;
     String effectiveDate;
     Double mid;
-    EurDto eurDto;
 
 }
