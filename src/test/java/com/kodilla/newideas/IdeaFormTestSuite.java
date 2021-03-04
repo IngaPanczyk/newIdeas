@@ -1,12 +1,10 @@
 package com.kodilla.newideas;
 
 import com.kodilla.newideas.controller.IdeaController;
-import com.kodilla.newideas.domain.IdeaExpert;
-import com.kodilla.newideas.domain.IdeaExpertDto;
 import com.kodilla.newideas.domain.IdeaNotification;
 import com.kodilla.newideas.domain.IdeaNotificationDto;
 import com.kodilla.newideas.service.DbService;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;

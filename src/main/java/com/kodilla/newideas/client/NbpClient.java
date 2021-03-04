@@ -3,7 +3,6 @@ package com.kodilla.newideas.client;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
-import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
 @Component
@@ -15,15 +14,10 @@ public class NbpClient {
     @Value("${api.nbp.endpoint}")
     private String nbpEndpoint;
 
-    public String getEur(){
-        try {
-            String response = restTemplate.getForObject(nbpEndpoint, EurDto.class).getCode().toString();
-            return response;
-        }catch (RestClientException e){
-            return new String("Error");
-        }
+    public String getEur() {
 
-
+        String response = restTemplate.getForObject(nbpEndpoint, ExchangeRate.class).getRates().get(0).getMid().toString();
+        return response;
 
     }
 }

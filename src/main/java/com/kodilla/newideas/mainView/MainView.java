@@ -1,15 +1,12 @@
 package com.kodilla.newideas.mainView;
 
-import com.kodilla.newideas.client.EurDto;
 import com.kodilla.newideas.client.NbpClient;
-import com.kodilla.newideas.controller.IdeaController;
 import com.kodilla.newideas.domain.IdeaExpert;
 import com.kodilla.newideas.domain.IdeaNotification;
 import com.kodilla.newideas.domain.User;
 import com.kodilla.newideas.mainView.graf.StatusGraf;
 import com.kodilla.newideas.service.DbService;
 import com.vaadin.flow.component.button.Button;
-import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.html.Image;
@@ -22,8 +19,6 @@ import com.vaadin.flow.component.textfield.NumberField;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.value.ValueChangeMode;
 import com.vaadin.flow.router.Route;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.client.RestTemplate;
 
 
 @CssImport("./my-styles/styles.css")
@@ -57,10 +52,11 @@ public class MainView extends VerticalLayout {
 
         this.dbService = service;
         this.ideaForm = form;
+        this.nbpClient = nbpClient;
 
         add(new Label("KAIZEN Employee suggestion system"));
         add((new com.vaadin.flow.component.Component[]{new Label("Number of idea notifications: " + dbService.countIdeas())}));
-        add((new com.vaadin.flow.component.Component[]{new Label(nbpClient.getEur())}));
+        add((new com.vaadin.flow.component.Component[]{new Label("Euro exchange rate: " + nbpClient.getEur())}));
 
         Image image = new Image(statusGraf.createGraf(dbService),"Graf");
 

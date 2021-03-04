@@ -4,16 +4,17 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+@Component
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class EurDto {
+public class ExchangeRate {
 
     private String table;
     private String currency;
@@ -61,10 +62,4 @@ public class EurDto {
         this.additionalProperties.put(name, value);
     }
 
-
-/*
-    String table;
-    String currency;
-    String code;
-    RatesDto ratesDto;*/
 }
