@@ -28,8 +28,6 @@ dependencies {
 
     //compile ('mysql:mysql-connector-java')
     compile('org.postgresql:postgresql')
-    compile 'com.github.jsimone:webapp-runner:8.5.11.3'
-
 
 
     compile('org.projectlombok:lombok')
