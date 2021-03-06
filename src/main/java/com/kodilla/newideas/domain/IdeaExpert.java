@@ -31,7 +31,6 @@ public final class IdeaExpert {
             mappedBy = "ideaExpert",
             cascade = CascadeType.MERGE,
             fetch = FetchType.EAGER
-
     )
     public List<IdeaNotification> ideaNotificationList = new ArrayList<>();
 
