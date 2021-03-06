@@ -11,7 +11,6 @@ import org.mockito.junit.MockitoJUnitRunner;
 
 import org.springframework.web.client.RestTemplate;
 
-import java.util.Map;
 
 @RunWith(MockitoJUnitRunner.class)
 public class EuroExchangeRateTest {

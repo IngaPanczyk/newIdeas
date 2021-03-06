@@ -1,11 +1,11 @@
 package com.kodilla.newideas.jdbc;
 
-import java.sql.Connection;
+
 
 
 public class DbManager {
-    private Connection conn;
-    private static DbManager dbManagerInstance;
+    //private Connection conn;
+    //private static DbManager dbManagerInstance;
 /*
     private DbManager() throws SQLException {
         Properties connectionProps = new Properties();
