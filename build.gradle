@@ -15,7 +15,7 @@ repositories {
 
 ext {
     set('vaadinVersion', "14.4.7")
-    set('tomcat.version', '9.0.38')
+    //set('tomcat.version', '9.0.38')
 }
 
 dependencies {
