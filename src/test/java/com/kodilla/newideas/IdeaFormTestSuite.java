@@ -20,14 +20,14 @@ public class IdeaFormTestSuite {
     @Test
     public void test(){
 
-        List<IdeaNotification> ideas = dbService.getAllIdeas();
-        System.out.println(ideas.size());
+        //List<IdeaNotification> ideas = dbService.getAllIdeas();
+        //System.out.println(ideas.size());
     }
 
     @Test
     public void test1(){
 
-        List<IdeaNotificationDto> ideas = ideaController.getIdeas();
-        System.out.println(ideas.size());
+        //List<IdeaNotificationDto> ideas = ideaController.getIdeas();
+        //System.out.println(ideas.size());
     }
 }
