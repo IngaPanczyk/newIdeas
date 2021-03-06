@@ -1,7 +1,6 @@
 package com.kodilla.newideas.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.kodilla.newideas.mainView.MainView;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

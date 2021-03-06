@@ -4,8 +4,6 @@ package com.kodilla.newideas.controller;
 
 import com.kodilla.newideas.domain.IdeaExpertDto;
 import com.kodilla.newideas.domain.IdeaNotificationDto;
-import com.kodilla.newideas.domain.User;
-import com.kodilla.newideas.domain.UserDto;
 import com.kodilla.newideas.exception.ExpertNotFoundException;
 import com.kodilla.newideas.exception.IdeaNotFoundException;
 import com.kodilla.newideas.mapper.IdeaExpertMapper;

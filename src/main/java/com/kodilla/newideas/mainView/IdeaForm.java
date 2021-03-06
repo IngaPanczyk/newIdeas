@@ -1,6 +1,6 @@
 package com.kodilla.newideas.mainView;
 
-import com.kodilla.newideas.controller.IdeaController;
+
 import com.kodilla.newideas.domain.IdeaExpert;
 import com.kodilla.newideas.domain.IdeaNotification;
 import com.kodilla.newideas.domain.IdeaStatus;
@@ -18,8 +18,7 @@ import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.data.binder.PropertyId;
 import com.vaadin.flow.spring.annotation.SpringComponent;
 import com.vaadin.flow.spring.annotation.UIScope;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+
 
 @SpringComponent
 @UIScope

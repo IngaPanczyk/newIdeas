@@ -10,7 +10,6 @@ import com.kodilla.newideas.repository.IdeaExpertDao;
 import com.kodilla.newideas.repository.IdeaNotificationDao;
 import com.kodilla.newideas.repository.StatusDao;
 import com.kodilla.newideas.repository.UserDao;
-import jdk.net.SocketFlow;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

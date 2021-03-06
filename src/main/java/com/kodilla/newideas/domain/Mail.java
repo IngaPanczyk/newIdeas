@@ -1,13 +1,12 @@
 package com.kodilla.newideas.domain;
 
-import lombok.AllArgsConstructor;
+
 import lombok.Getter;
 
 import java.io.IOException;
 import java.io.InputStream;
 
 @Getter
-
 public class Mail extends InputStream {
     private String mailTo;
     private String subject;
