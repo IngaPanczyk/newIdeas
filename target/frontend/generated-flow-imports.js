@@ -12,6 +12,7 @@ addCssBlock(`<custom-style><style>${$css_0}</style></custom-style>`);
 
 import '@polymer/iron-icon/iron-icon.js';
 import '@polymer/iron-list/iron-list.js';
+import '@vaadin/flow-frontend/VaadinDevmodeGizmo.js';
 import '@vaadin/flow-frontend/comboBoxConnector-es6.js';
 import '@vaadin/flow-frontend/contextMenuConnector-es6.js';
 import '@vaadin/flow-frontend/datepickerConnector.js';
